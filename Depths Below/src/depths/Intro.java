@@ -2,9 +2,9 @@
 
 package depths;
 import java.util.Scanner;
-
+//This class focuses on the opening scene
 public class Intro {
-	public static String version= "0.0"; //Just here to make it easier on me to change the version number easier
+public static String version= "Early Alpha 1.1.0"; //Just here to make it easier on me to change the version number easier
 	public static void main (String[] args){	
 		boolean key = true; //This is to allow the user multiple chances to enter input (see if statement at line 22 for examples) 
 		while (key){
@@ -25,7 +25,8 @@ public class Intro {
 				NewGame.NewChar();
 			} else if (choice.equalsIgnoreCase("Version Notes")||choice.equalsIgnoreCase("VersionNotes")||choice.equalsIgnoreCase("VN")||choice.equalsIgnoreCase("VNotes")||choice.equalsIgnoreCase("V")){
 				System.out.println("   Version " + version);
-				System.out.println(">Game was Created!");
+				System.out.println(">Battle System was added!\n>First enemy - Giant Rat was added!\n>3 of the 5 gifts have features(the other 2 will be added tomorrow)\n>Minor bug Fixes!\n>3 spells have been added\n>Level up feature has been added\n>And Tons, tons more!!");
+				key = true; //This returns the user to the start menu
 			} else {
 				System.out.println("That was not a choice, please reenter.");
 				key = true; //This is so I can have the user re-input commands, so the game doesn't randomly crash..

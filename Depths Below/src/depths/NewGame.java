@@ -1,7 +1,7 @@
 package depths;
 
 import java.util.Scanner;
-
+//This class focuses on the character creation process
 public class NewGame { 
 	public static int statPoints = 13; //Comes into play when the player is choosing stats 
 	static public int tstr = 0, tmag = 0, tluc = 0, tacc = 0, tdef = 0, tspe = 0, tHP = 10, tMP = 0; //All different stats that will be used in the game
@@ -29,6 +29,8 @@ public class NewGame {
 				Player player = new Player(Name, tstr, tmag, tluc, tacc, tdef, tspe, tHP, tMP); //This is cementing the stats in the Player class
 				player.statSheet();
 				ChooseGift(player);
+				System.out.println("\"It appears you have chosen your gift.\nI believe you have all you need, " + player.name + ", I hope you are ready for the depths!\nGood luck.\"");
+				DepthsIntro.Enter(player);
 				
 			} else {
 				Reset(); //this method just resets the game for the process to go through again.
@@ -80,17 +82,23 @@ public class NewGame {
 		tacc = 0;
 		tdef = 0; 
 		tspe = 0;
-		tHP = 0;
+		tHP = 10;
 		tMP = 0;
 		statPoints = 13;
 	}
 	
 	public static void ChooseGift(Player player){
 		System.out.println("\"I see... I think I have a rough representation of you, "  + player.name + ", but I still can't make out who you really are.\nThe next thing you are allowed to have before entering the Depths is a Gift. \nWhat is your Gift? \"");
-		boolean tempkey = true;
+		boolean tempkey = true;//Again, just used as a return point if the player enters a bad value
 		while (tempkey){
 			tempkey = false;
 			System.out.println(">Mystic Abilities \n>Combat Aptitude  \n>Endurance Mastery \n>Elder's Wisdom \n>Earth Telekinesis");
+			 // A real quick run-down on what each of the gifts do -
+			 // Combat Aptitude - gives the player more advanced options in combat
+			 // Mystic Abilities - gives the player their first couple of spell
+			 // Endurance Mastery - Will most likely prevent a percentage of physical damage received
+			 // Elder's Wisdom - Unsure at the moment - Maybe give the player a more in-depth look at combat
+			 // Earth Telekinesis - Will allow the player to use ranged attacks, these will cost no magic energy and focus on accuracy, luck, and speed stats instead of just strength
 			Scanner sctemp = new Scanner(System.in);
 			String userchoice = sctemp.nextLine();
 			if(userchoice.equalsIgnoreCase("CA")||userchoice.equalsIgnoreCase("Combat")||userchoice.equalsIgnoreCase("Aptitude")||userchoice.equalsIgnoreCase("Combat Aptitude")||userchoice.equalsIgnoreCase("C")||userchoice.equalsIgnoreCase("CombatAptitude")){
@@ -103,40 +111,42 @@ public class NewGame {
 				EldersWisdom(player);
 			} else if(userchoice.equalsIgnoreCase("ET")||userchoice.equalsIgnoreCase("Earth")||userchoice.equalsIgnoreCase("Telekinesis")||userchoice.equalsIgnoreCase("Earth Telekinesis")||userchoice.equalsIgnoreCase("Ea")||userchoice.equalsIgnoreCase("EarthTelekinesis")){
 				EarthTelekinesis(player);
+			}else if(userchoice.equalsIgnoreCase("Test")){
+				
 			} else {
 				System.out.println("That is not a choosable gift, please enter a choosable gift!");
 				tempkey=true;
 			}
 		}
 		try{
-			Thread.sleep(10000);
+			Thread.sleep(15000);
 		} catch ( InterruptedException e){
 			
 		}
 		
 		
-		System.out.println("\"It appears you have chosen your gift.\nI believe you have all you need, " + player.name + ", I hope you are ready for the depths!\nGood luck.\"");
-		depthsIntro.Enter(player);
-		
 	}
 	public static void CombatAptitude(Player player){
-		System.out.println("As soon as the words leave your mouth, your body begins to feel much stronger. \nYou vision fades to white and you hear a rugged, powerful voice shout out to you. \n\"The Depths will rip you to shreads if you lack natural talent in combat and actual skills.\nLuckily for you, I can give you these abilities\" \nYour vision returns to normal and you return, feeling as if you were a natural born master of combat!");
+		System.out.println("As soon as the words leave your mouth, your body begins to feel much stronger. \nYou vision fades to white and you hear a rugged, powerful voice shout out to you. \n\"The Depths will rip you to shreads if you lack natural talent in combat and actual skills.\nLuckily for you, I can give you these abilities\" \nYour vision reverts to normal and you return, feeling as if you were a natural born master of combat!");
 		player.gift = "Combat Aptitude";
 	}
 	public static void MysticAbilities(Player player){
-		System.out.println("Before you can even mutter your choice, a daydream intercepts your vision. \n3 figures, each holding paired torches, stand before your sight, but you are only able to make out the outline of them due to the blinding light. \nThe frontmost figure walks twoards you and touches your forehead.\nWith her touch, you mind seems to unlock and you discover the secrets of basic magic! \nSoon after she returns to her position, your daydream cuts out and you return to the present - changed.");
+		System.out.println("Before you can even mutter your choice, a daydream intercepts your vision. \n3 figures, each holding paired torches, stand before your sight, but you are only able to make out the outline of them due to the blinding light. \nThe frontmost figure walks towards you and touches your forehead.\nWith her touch, you mind seems to unlock and you discover the secrets of basic magic! \nSoon after she returns to her position, your daydream cuts out and you return to the present - changed.");
+		player.spell[0] = "Mental Blast";
+		player.spell[1] = "Augment Strength";
+		player.spell[2] = "Mystic Barrier";
 		player.gift= "Mystic Abilities";
 	}
 	public static void EnduranceMastery(Player player){
 		System.out.println("The words begin to leave your mouth, and soon after you body feels as if it was being crushed. \nYour vision suddenly fades to scene of a titanic man holding up a immense sphere. \nThe titan looks at you with solemn eyes that depict years of hardship.\n\"Mortal who wishes the gift of Endurance, I alone hold the heavens and sky, and I will grant you the gift of great endurance.\n Take this gift, and use it to clear the Depths and purge it of evil!\"\nThe vision fades away and you are left with nothing more than what feels to be great endurance.");
-		player.gift = "EnduranceMastery";
+		player.gift = "Endurance Mastery";
 	}
 	public static void EldersWisdom(Player player){
 		System.out.println("");//This is a placeholder
-		player.gift = "EldersWisdom";
+		player.gift = "Elders Wisdom";
 	}
 	public static void EarthTelekinesis(Player player){
-		System.out.println("");//This is a placeholer
-		player.gift = "EarthTelekinesis";
+		System.out.println("");//This is a placeholder
+		player.gift = "Earth Telekinesis";
 	}
 }
