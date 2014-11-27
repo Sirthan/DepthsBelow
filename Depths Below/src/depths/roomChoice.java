@@ -14,6 +14,7 @@ public class RoomChoice {
 			if (choice.equalsIgnoreCase("east")|| choice.equalsIgnoreCase("west")|| choice.equalsIgnoreCase("north")|| choice.equalsIgnoreCase("south")|| choice.equalsIgnoreCase("n")|| choice.equalsIgnoreCase("s")|| choice.equalsIgnoreCase("e")||choice.equalsIgnoreCase("w")) {
 				//Long list above is for checking if the input North, South, east or west
 				System.out.println("Slowly, you begin trudging to the next room, worried about what fate awaits you there.");
+				GameMechanics.pause(2000);
 				RandomRoom(player);
 			} else {
 				System.out.println("That wasn't a valid choice, please choose a valid choice");

@@ -138,15 +138,15 @@ public class NewGame {
 		player.gift= "Mystic Abilities";
 	}
 	public static void EnduranceMastery(Player player){
-		System.out.println("The words begin to leave your mouth, and soon after you body feels as if it was being crushed. \nYour vision suddenly fades to scene of a titanic man holding up a immense sphere. \nThe titan looks at you with solemn eyes that depict years of hardship.\n\"Mortal who wishes the gift of Endurance, I alone hold the heavens and sky, and I will grant you the gift of great endurance.\n Take this gift, and use it to clear the Depths and purge it of evil!\"\nThe vision fades away and you are left with nothing more than what feels to be great endurance.");
+		System.out.println("The words begin to leave your mouth, and soon after you body feels as if it was being crushed. \nYour vision suddenly fades to scene of a titanic man holding up a immense sphere. \nThe titan looks at you with solemn eyes that depict years of hardship.\n\"Mortal who wishes the gift of Endurance, I alone hold the heavens and sky, and I will grant you the gift of great endurance.\nTake this gift, and use it to clear the Depths and purge it of evil!\"\nThe vision fades away and you are left with nothing more than what feels to be great endurance.");
 		player.gift = "Endurance Mastery";
 	}
 	public static void EldersWisdom(Player player){
-		System.out.println("");//This is a placeholder
+		System.out.println("Moments after you state your choice, the world around you dissolves and a wise-looking figure steps before you, a spear in one hand and an owl perched in the next. \nThe figure doesn't speak, but rather see looks upon you with all-knowing eyes. \nFor what feels like hours she stares upon you, and you simply stand unmoving. \nAfter a long, long time, she moves towards you, her eyes now showing a sort of respect to you. \nAfter she enters talking range with you she speaks. \nShe tells you of many, many things, and you, like a pupil, sit and listen. \nAfter a long time filled with countless stories, you return to the present, wiser than ever before.");
 		player.gift = "Elders Wisdom";
 	}
 	public static void EarthTelekinesis(Player player){
-		System.out.println("");//This is a placeholder
+		System.out.println("Right after you mention your choice, everything around you dissapears, leaving you with only the earth and land for miles. \nJoyful of the new found freedom you begin to roam and live off the land. \nAfter what feels like weeks alone with nothing but the earth, you feel like you have formed a silent bond with it. \nMany months pass and finally, you decide its time to resume your journey to the depths, understanding that you won't be alone, \nbut rather, you will have all of the Earth on your side. \nAfter this epiphany, the world returns to normal and you return to the present, as if no time had passed.");
 		player.gift = "Earth Telekinesis";
 	}
 }

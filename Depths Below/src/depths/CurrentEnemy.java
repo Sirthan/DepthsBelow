@@ -7,7 +7,7 @@ public class CurrentEnemy extends EnemyEntity{
 	public String name = "ERROR";
 	public String genderPronoun = "it";
 	public boolean isBleeding = false;
-	public int turnsBleeding = 0;
+	public boolean isPoisoned = false;
 	public String basicAttackMessage = "";
 	public String damageAdjective = "";
 	public String deathCry = "";
@@ -20,13 +20,17 @@ public class CurrentEnemy extends EnemyEntity{
 		return ((int) ((double)Estr * ((Math.random() * 2 + 1))));
 	}
 	
+	public int bloodsuck (Player player){
+		return ((int) ((double)Estr * ((Math.random() * 2 + 1))));
+	}
+	
 	public CurrentEnemy(int Estr, int Emag, int Eluc, int Edef, int Espe, int EHP, int EMP, int Elvl, int EXPgiven, int Ggiven, String Name, String[] attacks, String sound, String genderPronoun, String basicAttackMessage, String damageAdjective, String deathCry){
 		this.Estr = Estr;
 		this.Emag = Emag;
 		this.Eluc = Eluc;
 		this.Espe = Espe;
 		this.EHP = EHP;
-		this.EMP = EHP;
+		this.EMP = EMP;
 		this.EMaxHP = EHP;
 		this.EMaxMP = EMP;
 		this.Elvl = Elvl;

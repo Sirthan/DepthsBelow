@@ -2,13 +2,14 @@ package depths;
 //This class will hold player values and functions that directly interact with these values, like statsheets and item array checks.
 public class Player {
 	public String name = ""; // 4 and 5 are set in NewGame.NewChar()
-	public int str = 0, mag = 0, luc = 0, acc = 0, def = 0, spe = 0, HP = 0, MP = 0, MaxHP = 0, MaxMP = 0, lvl = 3, EXP = 0, G = 10, roomsCleared = -1, floorsCleared = 1, shield = 0, TNL = 10;
+	public int str = 0, mag = 0, luc = 0, acc = 0, def = 0, spe = 0, HP = 0, MP = 0, MaxHP = 0, MaxMP = 0, lvl = 1, EXP = 0, G = 10, roomsCleared = -1, floorsCleared = 1, shield = 0, TNL = 10;
 	public String[] items = {""}; //Lines 6, 7, and 8 are all filled in as the game continues on, This holds all the passive Items for the player
 	public String activeItem = "";//This holds the name of the player's held Active Item
 	public String charm = ""; //This holds the name of the player's passive charm. 
 	public String gift = ""; //This is the gift they choose at the start of the game
 	public String[] spell = {"","",""}; //Simple Spell array for holding spells, Filled in as game goes on.
 	public int AugStr = 0; //This will hold how much strength is augmented by, so it may be reversed at the end of the battle.
+	public boolean bugTest = false;
 	
 	public Player(String name, int str, int mag, int luc, int acc, int def, int spe, int HP, int MP){ //Hooray for massive constructor to set the values of everything. Used in line 29 of NewGame.
 		this.name = name;
@@ -25,8 +26,8 @@ public class Player {
 	}
 	
 	public void statSheet(){ //A more in-depth statSheet, different than the one used in the Character creation(NewGame)
-		System.out.println("\tStats");
-		System.out.println("--------------------------");
+		System.out.println("   Stats -- " + name + " Level " + lvl );
+		System.out.println("----------------------------");
 		System.out.println("Strength - " + str + "\tMagic Power - " + mag);
 		System.out.println("Luck - " + luc + "    \tAccuaracy - " + acc);
 		System.out.println("Defense - " + def + " \tSpeed - " + spe);
@@ -136,11 +137,11 @@ public class Player {
 			System.out.println(stat +" +" + statG);
 			spe += statG;
 		} else if(stat.equals("Health")){
-			System.out.println(stat +" +" + statG);
-			MaxHP += statG;
+			System.out.println(stat +" +" + (statG * 5));
+			MaxHP += (statG * 5);
 		} else if(stat.equals("Mystic Energy")){
-			System.out.println(stat +" +" + statG);
-			MaxMP += statG;
+			System.out.println(stat +" +" + (5 * statG));
+			MaxMP += (statG * 5);
 		}
 	}
 }

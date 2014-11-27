@@ -4,7 +4,7 @@ package depths;
 import java.util.Scanner;
 //This class focuses on the opening scene
 public class Intro {
-public static String version= "Early Alpha 1.1.0"; //Just here to make it easier on me to change the version number easier
+public static String version= "Early Alpha 1.1.1"; //Just here to make it easier on me to change the version number easier
 	public static void main (String[] args){	
 		boolean key = true; //This is to allow the user multiple chances to enter input (see if statement at line 22 for examples) 
 		while (key){
