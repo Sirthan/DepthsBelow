@@ -27,15 +27,21 @@ public class RoomChoice {
 		//if(player.roomsCleared > (3 * player.floorsCleared)){
 			//This takes the player to the boss room
 		//}
-		int randomNumber = 1;
+		int randomNumber = (int) (Math.random() * 6 + 1);
 		if(randomNumber < 5){
 			//This takes the player to a combat room
 			CombatRoom combatroom = new CombatRoom();
 			combatroom.entrance(player);
 		} else if(randomNumber == 6){
-			//This takes the player to a special occurrence room
+			//This takes the player to a special room, Items or trap...
+			int randomnumber2 = (int) (Math.random() * 2 + 1);
+			if(randomnumber2 == 1)TreasureRoom.enter(player);
+			else if (randomnumber2 == 2)TrappedTreasureRoom.enter(player);
 		} else if(randomNumber == 7){
 			//This takes the player to a shop or blank room
+		} else {
+			CombatRoom combatroom = new CombatRoom();
+			combatroom.entrance(player);
 		}
 }
 }

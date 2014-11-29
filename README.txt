@@ -8,8 +8,9 @@ Basically, a beginner sad attempt at a randomized, puesdo-rougelike, turnbased R
 
 |||||||||||
 Version - Early Alpha 1.1.1 changes - 
->2 gifts now have functionallity and text
->2 new enemies have been added
+>3 New Items have been added!
+>Item System has been added
 >Numerous bug-fixes
->Shield now does stuff
->Battle system was changed slightly
+>You can no longer enter negitive values at the start of the game
+>Other cool stuff has been added
+>Minor changes to Telekinesis

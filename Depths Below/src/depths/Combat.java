@@ -142,7 +142,7 @@ public class Combat {
 							int damage = (int) ((player.mag) * (Math.random() * 2 + 1) + ((double) (player.acc / 2) + ((double)player.luc / 2)));
 							enemy.EHP -= damage;
 							System.out.print("The spell lands on the " + enemy.name + " and singes him for ");
-							damageMessage(damage, enemy.EHP, player);
+							damageMessage(damage, enemy.EMaxHP, player);
 							TurnSwap(player, enemy);
 						} else {
 							System.out.println("Not Enough MP!!!!");
@@ -199,9 +199,11 @@ public class Combat {
 				int damage = RandomTelekinesis(player, enemy);
 				if(damage == -1){
 					System.out.println("The plant hits the " + enemy.name + " and poisons him!!");
+				} else if(damage == -2){
+					player.shield = (int) ((double) ((player.luc + player.acc)/2)/(Math.random() * 3 + 1));
 				} else {
 					System.out.print("The rock smashes into the " + enemy.name + " and deals ");
-					damageMessage(damage, enemy.EHP, player);
+					damageMessage(damage, enemy.EMaxHP, player);
 					enemy.EHP -= damage;
 				}
 				TurnSwap(player,enemy);
@@ -302,6 +304,7 @@ public class Combat {
 	}
 
 	public static void TurnSwap(Player player, CurrentEnemy enemy){
+		System.out.println("\n");
 		if(enemy.isBleeding){
 			enemy.EHP -= (int) ((double) player.str / 2.0);
 			System.out.println("The " + enemy.name + " is losing a lot of blood due to his cut!");
@@ -310,13 +313,14 @@ public class Combat {
 			enemy.EHP -= (int) ((double) player.luc / (Math.random() * 2 + 1));
 			System.out.println("The " + enemy.name + " is obviously being affected by " + enemy.genderPronoun + " poisoning!");
 		}
-		if(enemy.EHP >= 0){
-			System.out.println("The " + enemy.name + "'s eyes dart around squemishly.\n");
+		if(enemy.EHP > 0){
+			System.out.println("The " + enemy.name + "'s eyes dart around squemishly.");
 			String attack = enemy.randomAttack();
 			GameMechanics.pause(2000);
 			if(attack.equals("basic")){
 				System.out.println(enemy.basicAttackMessage);
 				int damage = enemy.basicAttack(player);
+				if(damage < 1)damage = 1;
 				if(player.shield > 0){
 					player.shield -= damage;
 					if(player.shield < 0) player.shield = 0;
@@ -325,6 +329,12 @@ public class Combat {
 					} else {
 						System.out.println("Your shield absorbs the " + damage + " points of damage.");
 					}
+					if(GameMechanics.checkArray("Reflect Stone", player.items)){
+						System.out.print("The barrier seems to return some of the damage, injuring the " + enemy.name + " for ");
+						damageMessage(damage, enemy.EMaxHP, player);
+						enemy.EHP -= damage;
+						if(enemy.EHP <= 0) enemy.EHP = 1; 
+						}
 				} else {
 					player.takeDamage(damage);
 					if(player.gift.equals("Endurance Mastery")){
@@ -336,6 +346,7 @@ public class Combat {
 			} else if(attack.equalsIgnoreCase("claw")){
 				System.out.println("The " + enemy.name + " tears into you with " + enemy.genderPronoun + " massive claws!!");
 				int damage = enemy.claw(player);
+				if(damage < 1)damage = 1;
 				if(player.shield > 0){
 					player.shield -= damage;
 					if(player.shield < 0) player.shield = 0;
@@ -343,6 +354,12 @@ public class Combat {
 						System.out.println("Your shield absorbs the " + (damage / 2) + " points of damage.");
 					} else {
 						System.out.println("Your shield absorbs the " + damage + " points of damage.");
+					}
+					if(GameMechanics.checkArray("Reflect Stone", player.items)){
+					System.out.print("The barrier seems to return some of the damage, injuring the " + enemy.name + " for ");
+					damageMessage(damage, enemy.EMaxHP, player);
+					enemy.EHP -= damage;
+					if(enemy.EHP <= 0) enemy.EHP = 1; 
 					}
 				} else {
 					player.takeDamage(damage);
@@ -355,6 +372,7 @@ public class Combat {
 			} else if (attack.equals("bloodsuck")){
 				System.out.println("The " + enemy.name + " attempts bites into your arm!!");
 				int damage = enemy.bloodsuck(player);
+				if(damage < 1)damage = 1;
 				if(player.shield > 0){
 					player.shield -= damage;
 					if(player.shield < 0) player.shield = 0;
@@ -364,6 +382,12 @@ public class Combat {
 						System.out.println("Your shield absorbs the " + damage + " points of damage.");
 					}
 					System.out.println("The " + enemy.name + " couldn't drink any blood!");
+					if(GameMechanics.checkArray("Reflect Stone", player.items)){
+						System.out.print("The barrier seems to return some of the damage, injuring the " + enemy.name + " for ");
+						damageMessage(damage, enemy.EMaxHP, player);
+						enemy.EHP -= damage;
+						if(enemy.EHP <= 0) enemy.EHP = 1; 
+						}
 				} else {
 					player.takeDamage(damage);
 					System.out.println("The " + enemy.name + " begins to drink your blood!!");
@@ -380,6 +404,16 @@ public class Combat {
 			}
 
 			if(player.HP <= 0){
+				if(GameMechanics.checkArray("Fancy Cupcake", player.items)){
+					System.out.println("You fall to the ground, hurt and injured, unsure if you could keep going... ");
+					GameMechanics.pause(500);
+					System.out.println("But then, you remember the Fancy Cupcake you aquired earlier, and decide to eat it as a last ditch effort!");
+					System.out.println("Suddenly, you feel invigorated and inspired to continue the fight!!");
+					player.HP = (player.MaxHP / 4);
+					int fancyIndex = GameMechanics.indexArray("Fancy Cupcake", player.items);
+					player.items[fancyIndex] = "Fancy Cup cakeWrapper";
+					
+				} else {
 				DeathMessage(player);
 				System.out.println("Game Over...");
 				System.out.println("Here are your final stats");
@@ -387,15 +421,20 @@ public class Combat {
 				System.out.println("You cleared " + (player.floorsCleared - 1) + " floors and cleared " + player.roomsCleared + " rooms.");
 				System.out.println("Lastly, you were defeated by a " + enemy.name);
 				System.exit(0);
+				}
 			}
 		} else {
 			player.str -= player.AugStr;
 			player.AugStr = 0;
 			System.out.println(enemy.deathCry);
+			GameMechanics.pause(1000);
 			VictoryMessage(enemy);
+			GameMechanics.pause(1000);
+			System.out.println("You loot " + enemy.Ggiven + " Gold off the enemy and feel as if you gained about " + enemy.EXPgiven + " experience!");
 			player.EXP += enemy.EXPgiven;
 			player.G += enemy.Ggiven;
 			if(player.EXP >= player.TNL){
+				GameMechanics.pause(1000);
 				GameMechanics.levelupText();
 				System.out.println("");
 				GameMechanics.pause(2000);
@@ -476,9 +515,12 @@ public class Combat {
 
 	public static int RandomTelekinesis(Player player, CurrentEnemy enemy){
 		int randomNum = (int)(Math.random() * 10 + 1);
-		if(randomNum <= 7){
+		if(randomNum <= 6){
 			System.out.println("After a couple moments of focus, you are able to find and throw a relatively large rock.");
 			return ((int) (((((double)player.luc / 6.0) + ((double) player.acc / 2.0) + ((double) player.spe / 3.0)) * (Math.random() * 3 + 2)) - enemy.Edef));
+		} else if (randomNum == 7){
+			System.out.println("Deciding that you need protrection, you stack a large number of rocks into a shield infront of you");
+			return (-2);
 		} else if (randomNum == 8){
 			System.out.println("With an amazing stroke of luck, you are able to find a massive rock, and you immediately throw it at the " + enemy.name);
 			return ((int) (((((double)player.luc / 6.0) + ((double) player.acc / 2.0) + ((double) player.spe / 3.0)) * (Math.random() * 4 + 3)) - enemy.Edef));

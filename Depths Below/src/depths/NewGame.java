@@ -50,7 +50,7 @@ public class NewGame {
 			String statallocate = sc1.nextLine();
 			try{ //Prevents program from crashing at mistype / bad input.
 				int tStat = Integer.parseInt(statallocate);
-				if (tStat > statPoints){ //To prevent player from going over limit of statPoints.
+				if (tStat > statPoints || tStat < 0){ //To prevent player from going over limit of statPoints.
 					System.out.println("This number exceedes your limit of " + statPoints + ". Please try again.");
 					tempKey = true;
 				} else { 

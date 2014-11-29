@@ -1,9 +1,9 @@
 package depths;
-//This class will hold player values and functions that directly interact with these values, like statsheets and item array checks.
+//This class will hold player values and functions that directly interact with these values, like statsheets.
 public class Player {
 	public String name = ""; // 4 and 5 are set in NewGame.NewChar()
 	public int str = 0, mag = 0, luc = 0, acc = 0, def = 0, spe = 0, HP = 0, MP = 0, MaxHP = 0, MaxMP = 0, lvl = 1, EXP = 0, G = 10, roomsCleared = -1, floorsCleared = 1, shield = 0, TNL = 10;
-	public String[] items = {""}; //Lines 6, 7, and 8 are all filled in as the game continues on, This holds all the passive Items for the player
+	public String[] items = {"","",""}; //Lines 6, 7, and 8 are all filled in as the game continues on, This holds all the passive Items for the player
 	public String activeItem = "";//This holds the name of the player's held Active Item
 	public String charm = ""; //This holds the name of the player's passive charm. 
 	public String gift = ""; //This is the gift they choose at the start of the game
@@ -67,19 +67,19 @@ public class Player {
 	public void printSpells(){
 		for(int i = 0; i < spell.length; i++){
 			if(spell[i].equalsIgnoreCase("Mental Blast")){
-				System.out.print("Mental Blast (1MP)");
+				System.out.print("Mental Blast (1MP) ");
 			} else if(spell[i].equalsIgnoreCase("Augment Strength")){
-				System.out.print("Augment Strngth (4MP)");
+				System.out.print("Augment Strngth (4MP) ");
 			} else if(spell[i].equalsIgnoreCase("Mystic Barrier")){
-				System.out.print("Mystic Barrier (6MP)");
+				System.out.print("Mystic Barrier (6MP) ");
 			} else if(spell[i].equals("")){
 				if(i == 0){
 					System.out.println("You have no knowledge of any spells!");
 				}
 				break;
 			}
-			if((i-1) != spell.length){
-				System.out.print(", ");
+			if((i+1) != spell.length){
+				System.out.print(",");
 			}
 		}
 	}
@@ -110,7 +110,7 @@ public class Player {
 		StatGrowth("Health");
 		StatGrowth("Mystic Energy");
 		lvl++;
-		EXP = 0;
+		EXP %= TNL;
 		TNL += ((lvl * 5) - luc);
 		HP = MaxHP;
 		MP = MaxMP;
@@ -143,5 +143,58 @@ public class Player {
 			System.out.println(stat +" +" + (5 * statG));
 			MaxMP += (statG * 5);
 		}
+	}
+	
+	public void swapStats(){
+		String randomstat = randomStat();
+		String randomstat2 = randomStat();
+		int tmp = statGetter(randomstat);
+		statSetter(randomstat , statGetter(randomstat2));
+		statSetter(randomstat2 , tmp);
+	}
+	public String randomStat(){
+		int randomNum = (int) (Math.random() * 8 + 1);
+		switch(randomNum){
+		case 1:
+			return "str";
+		case 2:
+			return "mag";
+		case 3:
+			return "luc";
+		case 4:
+			return "acc";
+		case 5:
+			return "def";
+		case 6:
+			return "spe";
+		case 7:
+			return "MaxHP";
+		case 8:
+			return "MaxMP";
+		default:
+			return "spe";
+		}
+		
+	}
+	public int statGetter(String stat){
+		if(stat.equalsIgnoreCase("str"))return str;
+		else if(stat.equalsIgnoreCase("mag"))return mag;
+		else if(stat.equalsIgnoreCase("luc"))return luc;
+		else if(stat.equalsIgnoreCase("acc"))return acc;
+		else if(stat.equalsIgnoreCase("def"))return def;
+		else if(stat.equalsIgnoreCase("spe"))return spe;
+		else if(stat.equalsIgnoreCase("MaxHP"))return (MaxHP / 5);
+		else if(stat.equalsIgnoreCase("MaxMP"))return (MaxMP / 5);
+		else return spe;
+	}
+	public void statSetter(String stat, int set){
+		if(stat.equalsIgnoreCase("str"))str=set;
+		else if(stat.equalsIgnoreCase("mag"))mag=set;
+		else if(stat.equalsIgnoreCase("luc"))luc=set;
+		else if(stat.equalsIgnoreCase("acc"))acc=set;
+		else if(stat.equalsIgnoreCase("def"))def=set;
+		else if(stat.equalsIgnoreCase("spe"))spe=set;
+		else if(stat.equalsIgnoreCase("MaxHP")) MaxHP = ((set * 5) + 5);
+		else if(stat.equalsIgnoreCase("MaxMP"))MaxMP = (set * 5);
 	}
 }

@@ -30,6 +30,24 @@ public class GameMechanics {
 		return false;
 	}
 	
+	public static void addArray(String text, String[] arrayToAdd){
+		for(int i = 0; i < arrayToAdd.length; i++){
+			if(arrayToAdd[i].equals("")){
+				arrayToAdd[i] = text;
+				break;
+			}
+		}
+	}
+	
+	public static int indexArray(String text, String[] arrayToIndex){
+		for(int i = 0; i < arrayToIndex.length; i++){
+			if(arrayToIndex[i].equalsIgnoreCase(text)){
+				return i;
+			}
+		}
+		return -1;
+	}
+	
 	  public static void levelupText(){
 		  System.out.println(" _                _   _   _ ___ ");
 		  System.out.println("| |   _____ _____| | | | | | _ \\");
