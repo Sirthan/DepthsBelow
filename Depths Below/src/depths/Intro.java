@@ -4,12 +4,12 @@ package depths;
 import java.util.Scanner;
 //This class focuses on the opening scene
 public class Intro {
-public static String version= "Early Alpha 1.2.0"; //Just here to make it easier on me to change the version number easier
+public static String version= "Early Alpha 1.2.0"; //Just here to make it easier on me to change the version number easier.
 	public static void main (String[] args){	
-		boolean key = true; //This is to allow the user multiple chances to enter input (see if statement at line 22 for examples) 
+		boolean key = true; //This is to allow the user multiple chances to enter input (see if statement at line 22 for examples). 
 		while (key){
 			key = false;
-			System.out.println("  / _ \\___ ___  / /_/ /  ___"); //This (line 10 - Line 15) is ASCII art spelling out Depths Below
+			System.out.println("  / _ \\___ ___  / /_/ /  ___"); //This (line 10 - Line 15) is ASCII art spelling out Depths Below.
 			System.out.println(" / // / -_) _ \\/ __/ _ \\(_-<");
 			System.out.println("/____/\\__/ .__/\\__/_//_/___/");
 			System.out.println("  / _ )_/_// /__ _    __    ");
