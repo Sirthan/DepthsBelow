@@ -3,11 +3,11 @@ package depths;
 public class Player {
 	public String name = ""; // 4 and 5 are set in NewGame.NewChar()
 	public int str = 0, mag = 0, luc = 0, acc = 0, def = 0, spe = 0, HP = 0, MP = 0, MaxHP = 0, MaxMP = 0, lvl = 1, EXP = 0, G = 10, roomsCleared = -1, floorsCleared = 1, shield = 0, TNL = 10;
-	public String[] items = {"","",""}; //Lines 6, 7, and 8 are all filled in as the game continues on, This holds all the passive Items for the player
+	public String[] items = new String[11]; //Lines 6, 7, and 8 are all filled in as the game continues on, This holds all the passive Items for the player
 	public String activeItem = "";//This holds the name of the player's held Active Item
 	public String charm = ""; //This holds the name of the player's passive charm. 
 	public String gift = ""; //This is the gift they choose at the start of the game
-	public String[] spell = {"","",""}; //Simple Spell array for holding spells, Filled in as game goes on.
+	public String[] spell = new String[3]; //Simple Spell array for holding spells, Filled in as game goes on.
 	public int AugStr = 0; //This will hold how much strength is augmented by, so it may be reversed at the end of the battle.
 	public boolean bugTest = false;
 	
@@ -34,11 +34,11 @@ public class Player {
 		System.out.println("Health - " + MaxHP + "   \tMystic Energy - " + MaxMP);
 		System.out.print("Gift - ");
 		if(gift == ""){
-			System.out.println("You don't have a blessing currently");
+			System.out.println("You don't have a blessing currently.");
 		} else {
-			System.out.println("You currently have the blessing of " + gift);
+			System.out.println("You currently have the blessing of " + gift + ".");
 		}
-		System.out.print("Current items - ");
+		System.out.println("Current items - ");
 		for(int i = 0; i < items.length; i++){
 			if(items[i].equals("")){
 				if(i == 0){

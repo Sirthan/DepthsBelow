@@ -273,7 +273,7 @@ public class Combat {
 			System.out.println("You take a moment to prepare, then smash into the " + enemy.name + "!");
 			break;
 		case 4:
-			System.out.println("Slowly, you walk to the " + enemy.name + ", pausing only a moment before showering " + enemy.genderPronoun + " in punches");
+			System.out.println("Slowly, you walk to the " + enemy.name + ", pausing only a moment before showering " + enemy.genderPronoun + " in punches.");
 			break;
 		default:
 			System.out.println("ERROR - Combat, RandomAttackMessage()");
@@ -505,7 +505,7 @@ public class Combat {
 			GameMechanics.pause(2000);
 			break;
 		case 4:
-			System.out.println("You kneel down and attempt to become one with the earth");
+			System.out.println("You kneel down and attempt to become one with the earth.");
 			GameMechanics.pause(2000);
 			break;
 		default:
@@ -519,16 +519,16 @@ public class Combat {
 			System.out.println("After a couple moments of focus, you are able to find and throw a relatively large rock.");
 			return ((int) (((((double)player.luc / 6.0) + ((double) player.acc / 2.0) + ((double) player.spe / 3.0)) * (Math.random() * 3 + 2)) - enemy.Edef));
 		} else if (randomNum == 7){
-			System.out.println("Deciding that you need protrection, you stack a large number of rocks into a shield infront of you");
+			System.out.println("Deciding that you need protrection, you stack a large number of rocks into a shield infront of you.");
 			return (-2);
 		} else if (randomNum == 8){
-			System.out.println("With an amazing stroke of luck, you are able to find a massive rock, and you immediately throw it at the " + enemy.name);
+			System.out.println("With an amazing stroke of luck, you are able to find a massive rock, and you immediately throw it at the " + enemy.name + "!!");
 			return ((int) (((((double)player.luc / 6.0) + ((double) player.acc / 2.0) + ((double) player.spe / 3.0)) * (Math.random() * 4 + 3)) - enemy.Edef));
 		} else if (randomNum == 9){
-			System.out.println("You, unfortunantly, are unable to find anything other than a medium sized rock to throw.\nUnhappily, you toss the tiny rock toward the " + enemy.name);
+			System.out.println("You, unfortunantly, are unable to find anything other than a medium sized rock to throw.\nUnhappily, you toss the tiny rock toward the " + enemy.name + "...");
 			return ((int) ((((double)player.luc / 6.0) + ((double) player.acc / 2.0) + ((double) player.spe / 3.0)) - enemy.Edef));
 		} else if(randomNum == 10){
-			System.out.println("Deciding to mix it up a little, you throw a poisonous plant in hopes of poisoning the " + enemy.name);
+			System.out.println("Deciding to mix it up a little, you throw a poisonous plant in hopes of poisoning the " + enemy.name + "!");
 			enemy.isPoisoned = true;
 			return (-1);
 		} else {

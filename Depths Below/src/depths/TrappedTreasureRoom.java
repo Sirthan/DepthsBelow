@@ -12,7 +12,7 @@ public class TrappedTreasureRoom {
 		Scanner sc5 = new Scanner(System.in);
 		String input = sc5.nextLine();
 		if(input.equalsIgnoreCase("Yes")||input.equalsIgnoreCase("Ye")||input.equalsIgnoreCase("Y")){
-			System.out.println("Deciding that any danger the chest may contain will be outweighed by the chance of treasure, you greedily open the chest");
+			System.out.println("Deciding that any danger the chest may contain will be outweighed by the chance of treasure, you greedily open the chest!");
 			GameMechanics.staggerText("......", 500);
 			String trap = RandomTrap();
 			if(trap.equals("Explosion")){
@@ -33,7 +33,7 @@ public class TrappedTreasureRoom {
 					} else {
 					Combat.DeathMessage(player);
 					System.out.println("Game Over...");
-					System.out.println("Here are your final stats");
+					System.out.println("Here are your final stats - ");
 					player.statSheet();
 					System.out.println("You cleared " + (player.floorsCleared - 1) + " floors and cleared " + player.roomsCleared + " rooms.");
 					System.out.println("Lastly, you were defeated by being stupid");

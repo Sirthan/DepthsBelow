@@ -4,7 +4,7 @@ package depths;
 import java.util.Scanner;
 //This class focuses on the opening scene
 public class Intro {
-public static String version= "Early Alpha 1.2.0"; //Just here to make it easier on me to change the version number easier.
+public static String version= "Early Alpha 1.2.1"; //Just here to make it easier on me to change the version number easier.
 	public static void main (String[] args){	
 		boolean key = true; //This is to allow the user multiple chances to enter input (see if statement at line 22 for examples). 
 		while (key){
@@ -25,7 +25,7 @@ public static String version= "Early Alpha 1.2.0"; //Just here to make it easier
 				NewGame.NewChar();
 			} else if (choice.equalsIgnoreCase("Version Notes")||choice.equalsIgnoreCase("VersionNotes")||choice.equalsIgnoreCase("VN")||choice.equalsIgnoreCase("VNotes")||choice.equalsIgnoreCase("V")){
 				System.out.println("   Version " + version);
-				System.out.println(">3 New Items added! \n>Item System added \n>Trapped Item Rooms added! \n>Numerous Bug Fixes \n>Other cool things added!");
+				System.out.println(">8 New Items added! (Don't get your hopes up, they are all pretty boring) \n>Corrected some sentences \n>Numerous Bug Fixes");
 				key = true; //This returns the user to the start menu
 			} else {
 				System.out.println("That was not a choice, please reenter.");

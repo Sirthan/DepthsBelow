@@ -25,7 +25,7 @@ public class TreasureRoom {
 					RoomChoice.ChooseAction(player);
 				}
 			} else if(treasure.equals("White Potion")){
-				System.out.println("Inside the chest you find a glass bottled filled with a white liquid \nShould you drink it?");
+				System.out.println("Inside the chest you find a glass bottled filled with a white liquid... \nShould you drink it?");
 				String input2 = sc5.nextLine();
 				if(input2.equalsIgnoreCase("Yes")||input2.equalsIgnoreCase("Ye")||input2.equalsIgnoreCase("Y")){
 					GameMechanics.addArray("White Potion Bottle", player.items);
@@ -37,7 +37,7 @@ public class TreasureRoom {
 					player.swapStats();
 					player.HP = player.MaxHP;
 					player.MP = player.MaxMP;
-					System.out.println("A few moments later you feel... diffrent? \nYou can't place your finger on it but it feels as if you've changed slightly");
+					System.out.println("A few moments later you feel... diffrent? \nYou can't place your finger on it but it feels as if you've changed slightly.");
 					RoomChoice.ChooseAction(player);
 				} else {
 					System.out.println("Deciding that drinking a random potion thats been setting in a chest for a long time is pobably not a good idea, you leave the potion in the chest.");
@@ -54,6 +54,54 @@ public class TreasureRoom {
 					System.out.println("Thinking the stone may be cursed or something even worse, you leave it in the chest, and return to the adventure.");
 					RoomChoice.ChooseAction(player);
 				}
+			} else if(treasure.equalsIgnoreCase("STR Potion")||treasure.equalsIgnoreCase("MAG Potion")||treasure.equalsIgnoreCase("LUC Potion")||treasure.equalsIgnoreCase("ACC Potion")||treasure.equalsIgnoreCase("DEF Potion")||treasure.equalsIgnoreCase("SPE Potion")||treasure.equalsIgnoreCase("MAXHP Potion")||treasure.equalsIgnoreCase("MAXMP Potion")){
+				System.out.println("Inside the chest, sitting at the bottom, is a werid shaped bottle labled \"" + treasure + "\"... \nShould you drink it?");
+				String input2 = sc5.nextLine();
+				if(input2.equalsIgnoreCase("Yes")||input2.equalsIgnoreCase("Ye")||input2.equalsIgnoreCase("Y")){
+					GameMechanics.addArray(treasure + " Bottle", player.items);
+					System.out.print("You drink the bottle and feel as if you ");
+					switch (treasure){
+					case "MAG Potion":
+						System.out.println("just became a lot smarter!");
+						player.mag += 3;
+						break;
+					case "STR Potion":
+						System.out.println("just got a lot stronger!");
+						player.str += 3;
+						break;
+					case "LUC Potion":
+						System.out.println("just got a lot luckier!");
+						player.luc += 3;
+						break;
+					case "ACC Potion":
+						System.out.println("just became a lot more accurate!");
+						player.acc += 3;
+						break;
+					case "DEF Potion":
+						System.out.println("just became a lot more beefy!");
+						player.def += 3;
+						break;
+					case "SPE Potion":
+						System.out.println("just got a lot faster!");
+						player.spe += 3;
+						break;
+					case "MAXHP Potion":
+						System.out.println("just got a lot more healthy!");
+						player.MaxHP += 20;
+						player.HP += 20;
+						break;
+					case "MAXMP Potion":
+						System.out.println("just got a lot more mentally endurant!");
+						player.MaxMP += 20;
+						player.MP += 20;
+						break;
+					}
+					RoomChoice.ChooseAction(player);
+				} else {
+					System.out.println("Deciding to avoid werid potions, you leave the potion inside then chest.");
+					RoomChoice.ChooseAction(player);
+				}
+				
 			} else {
 				System.out.println("Unfortunantly, the chest appears to be empty, someone must have got to it a long time ago...");
 				RoomChoice.ChooseAction(player);
@@ -67,7 +115,7 @@ public class TreasureRoom {
 	}
 	
 	public static String RandomTreasure(Player player){
-		int randomNum = (int)  (Math.random() * 3 + 1);
+		int randomNum = (int)  (Math.random() * 11 + 1);
 		switch (randomNum){
 		case 1:
 			if(GameMechanics.checkArray("Fancy Cupcake", player.items)||GameMechanics.checkArray("Fancy Cupcake Wrapper", player.items)){
@@ -87,6 +135,56 @@ public class TreasureRoom {
 			} else {
 			return "Reflect Stone";
 			}
+		case 4:
+			if(GameMechanics.checkArray("STR Potion Bottle", player.items)){
+				
+			} else {
+			return "STR Potion";
+			}
+		case 5:
+			if(GameMechanics.checkArray("MAG Potion Bottle", player.items)){
+				
+			} else {
+			return "MAG Potion";
+			}
+		case 6:
+			if(GameMechanics.checkArray("LUC Potion Bottle", player.items)){
+				
+			} else {
+			return "LUC Potion";
+			}
+		case 7:
+			if(GameMechanics.checkArray("ACC Potion Bottle", player.items)){
+				
+			} else {
+			return "ACC Potion";
+			}
+		case 8:
+			if(GameMechanics.checkArray("DEF Potion Bottle", player.items)){
+				
+			} else {
+			return "DEF Potion";
+			}
+		case 9:
+			if(GameMechanics.checkArray("SPE Potion Bottle", player.items)){
+				
+			} else {
+			return "SPE Potion";
+			}
+		case 10:
+			if(GameMechanics.checkArray("MAXHP Potion Bottle", player.items)){
+				
+			} else {
+			return "MAXHP Potion";
+			}
+		case 11:
+			if(GameMechanics.checkArray("MAXMP Potion Bottle", player.items)){
+				
+			} else {
+			return "MAXMP Potion";
+			}
+			
+			
 		default:
 			return "";
 		}

@@ -17,7 +17,7 @@ public class RoomChoice {
 				GameMechanics.pause(2000);
 				RandomRoom(player);
 			} else {
-				System.out.println("That wasn't a valid choice, please choose a valid choice");
+				System.out.println("That wasn't a valid choice, please choose a valid choice...");
 				key = true;
 			}
 		}

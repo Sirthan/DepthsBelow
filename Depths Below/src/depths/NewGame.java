@@ -1,5 +1,6 @@
 package depths;
 
+import java.util.Arrays;
 import java.util.Scanner;
 //This class focuses on the character creation process
 public class NewGame { 
@@ -27,6 +28,8 @@ public class NewGame {
 			String statConfermation = sc.nextLine();
 			if(statConfermation.equalsIgnoreCase("yes")||statConfermation.equalsIgnoreCase("ye")||statConfermation.equalsIgnoreCase("y")){
 				Player player = new Player(Name, tstr, tmag, tluc, tacc, tdef, tspe, tHP, tMP); //This is cementing the stats in the Player class
+				Arrays.fill(player.items, "");
+				Arrays.fill(player.spell, "");
 				player.statSheet();
 				ChooseGift(player);
 				System.out.println("\"It appears you have chosen your gift.\nI believe you have all you need, " + player.name + ", I hope you are ready for the depths!\nGood luck.\"");
