@@ -3,13 +3,14 @@ package depths;
 public class Player {
 	public String name = ""; // 4 and 5 are set in NewGame.NewChar()
 	public int str = 0, mag = 0, luc = 0, acc = 0, def = 0, spe = 0, HP = 0, MP = 0, MaxHP = 0, MaxMP = 0, lvl = 1, EXP = 0, G = 10, roomsCleared = -1, floorsCleared = 1, shield = 0, TNL = 10;
-	public String[] items = new String[11]; //Lines 6, 7, and 8 are all filled in as the game continues on, This holds all the passive Items for the player
+	public String[] items = new String[16]; //Lines 6, 7, and 8 are all filled in as the game continues on, This holds all the passive Items for the player
 	public String activeItem = "";//This holds the name of the player's held Active Item
 	public String charm = ""; //This holds the name of the player's passive charm. 
 	public String gift = ""; //This is the gift they choose at the start of the game
 	public String[] spell = new String[3]; //Simple Spell array for holding spells, Filled in as game goes on.
 	public int AugStr = 0; //This will hold how much strength is augmented by, so it may be reversed at the end of the battle.
 	public boolean bugTest = false;
+	public int GlyphNum = 0;
 	
 	public Player(String name, int str, int mag, int luc, int acc, int def, int spe, int HP, int MP){ //Hooray for massive constructor to set the values of everything. Used in line 29 of NewGame.
 		this.name = name;
@@ -31,7 +32,8 @@ public class Player {
 		System.out.println("Strength - " + str + "\tMagic Power - " + mag);
 		System.out.println("Luck - " + luc + "    \tAccuaracy - " + acc);
 		System.out.println("Defense - " + def + " \tSpeed - " + spe);
-		System.out.println("Health - " + MaxHP + "   \tMystic Energy - " + MaxMP);
+		System.out.println("Health - " + MaxHP + "\tMystic Energy - " + MaxMP);
+		System.out.println("Gold - " + G + "\tExperience - " + EXP);
 		System.out.print("Gift - ");
 		if(gift == ""){
 			System.out.println("You don't have a blessing currently.");

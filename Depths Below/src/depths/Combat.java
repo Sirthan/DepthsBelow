@@ -33,6 +33,23 @@ public class Combat {
 				enemy.EHP -= damage;
 				System.out.print("The attack hits the " + enemy.name + " and appears to cause ");
 				damageMessage(damage, enemy.EMaxHP, player);
+				if(GameMechanics.checkArray("Lifesteal Glyph", player.items)){
+					player.HP += (int) ((damage / ((100.0 - ((double)player.GlyphNum * 20) + 1))));
+					if(player.HP > player.MaxHP) player.HP = player.MaxHP;
+				}
+				if(GameMechanics.checkArray("Moneydrain Glyph", player.items))player.G += player.GlyphNum;
+				if(GameMechanics.checkArray("Manasteal Glyph", player.items)){
+					player.MP += (int) (.5 + ((double)player.GlyphNum / 2.0));
+					if(player.MP > player.MaxMP)player.MP = player.MaxMP;
+				}
+				if(GameMechanics.checkArray("Shieldgenerate Glyph", player.items)){
+					int randomChance = (int) ((Math.random() * 100) + (player.GlyphNum * 10));
+					if(randomChance > 80){
+						player.shield += 1;
+						System.out.println("A powerful glow shines out from nowhere, and with it, a weak barrier forms infront of you!!");
+					}
+				}
+				if(GameMechanics.checkArray("EXPsteal Glyph", player.items))player.EXP += (int) (.5 + ((double)player.GlyphNum / 2.0));
 				TurnSwap(player, enemy);
 
 				/*Start of Adv. Combat if*/

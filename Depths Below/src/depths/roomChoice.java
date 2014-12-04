@@ -32,7 +32,7 @@ public class RoomChoice {
 			//This takes the player to a combat room
 			CombatRoom combatroom = new CombatRoom();
 			combatroom.entrance(player);
-		} else if(randomNumber == 6){
+		} else if(randomNumber >= 5){
 			//This takes the player to a special room, Items or trap...
 			int randomnumber2 = (int) (Math.random() * 2 + 1);
 			if(randomnumber2 == 1)TreasureRoom.enter(player);

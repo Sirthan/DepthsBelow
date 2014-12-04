@@ -96,12 +96,41 @@ public class TreasureRoom {
 						player.MP += 20;
 						break;
 					}
-					RoomChoice.ChooseAction(player);
+					RoomChoice.ChooseAction(player);	
 				} else {
-					System.out.println("Deciding to avoid werid potions, you leave the potion inside then chest.");
+					System.out.println("Deciding to avoid oddly shaped potions with mysterious tags, you leave the potion in the chest and continue on..");
 					RoomChoice.ChooseAction(player);
 				}
-				
+			}else if(treasure.equalsIgnoreCase("Lifesteal Glyph")||treasure.equalsIgnoreCase("Moneydrain Glyph")||treasure.equalsIgnoreCase("Manasteal Glyph")||treasure.equalsIgnoreCase("Shieldgenerate Glyph")||treasure.equalsIgnoreCase("EXPsteal glyph")){
+				System.out.print("Inside the chest you find an odd glowing fragment of a stone, with a picture of a ");
+				switch(treasure){
+				case "Lifesteal Glyph":
+					System.out.println("bloodied Staff of Asclepius etched into it.\nTake the fragment with you?");
+					break;
+				case "Moneydrain Glyph":
+					System.out.println("diamond surrounding a circle etched into it.\nTake the fragment with you?");
+					break;
+				case "Manasteal Glyph":
+					System.out.println("blue flame being stolen by another carved into it. \nTake the fragment with you?");
+					break;
+				case "Shieldgenerate Glyph":
+					System.out.println("barrier protecting an older man from an onslaught of attacks carved into it.\nTake the fragment with you?");
+					break;
+				case "EXPsteal Glyph":
+					System.out.println("light green orb being stolen by another carved into it. \nTake the fragment with you?");
+					break;
+				}
+				String input3 = sc5.nextLine();
+				if(input3.equalsIgnoreCase("Yes")||input3.equalsIgnoreCase("Ye")||input3.equalsIgnoreCase("Y")){
+					GameMechanics.addArray(treasure, player.items);
+					System.out.println("As you pick up the stone, a strange feeling radiates throughout your body.");
+					if(player.GlyphNum > 0) System.out.println("The other fragments in your possession seem to glow even brighter!");
+					player.GlyphNum++;
+					RoomChoice.ChooseAction(player);
+				} else {
+					System.out.println("Deciding that you won't pick up possibly cursed stones, you return to the quest at hand without a second thought to the stone.");
+					RoomChoice.ChooseAction(player);
+				}
 			} else {
 				System.out.println("Unfortunantly, the chest appears to be empty, someone must have got to it a long time ago...");
 				RoomChoice.ChooseAction(player);
@@ -112,10 +141,11 @@ public class TreasureRoom {
 			GameMechanics.pause(1000);
 			RoomChoice.ChooseAction(player);
 		}
+		
 	}
 	
 	public static String RandomTreasure(Player player){
-		int randomNum = (int)  (Math.random() * 11 + 1);
+		int randomNum = (int)  (Math.random() * 16 + 1);
 		switch (randomNum){
 		case 1:
 			if(GameMechanics.checkArray("Fancy Cupcake", player.items)||GameMechanics.checkArray("Fancy Cupcake Wrapper", player.items)){
@@ -183,7 +213,36 @@ public class TreasureRoom {
 			} else {
 			return "MAXMP Potion";
 			}
-			
+		case 12:
+			if(GameMechanics.checkArray("Lifesteal Glyph", player.items)){
+				
+			} else {
+			return "Lifesteal Glyph";
+			}
+		case 13:
+			if(GameMechanics.checkArray("Moneydrain Glyph", player.items)){
+					
+			} else {
+			return "Moneydrain Glyph";
+			}
+		case 14:
+			if(GameMechanics.checkArray("Manasteal Glyph", player.items)){
+					
+			} else {
+			return "Manasteal Glyph";
+			}
+		case 15:
+			if(GameMechanics.checkArray("Shieldgenerate Glyph", player.items)){
+					
+			} else {
+			return "Shieldgenerate Glyph";
+			}
+		case 16:
+			if(GameMechanics.checkArray("EXPsteal Glyph", player.items)){
+					
+			} else {
+			return "EXPsteal Glyph";
+			}
 			
 		default:
 			return "";
